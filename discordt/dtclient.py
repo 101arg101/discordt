@@ -22,6 +22,7 @@ DEALINGS IN THE SOFTWARE.
 """
 
 import discord
+import asyncio
 import threading
 
 def _null_event(*args, **kwargs):
@@ -118,6 +119,7 @@ class DTClient(object):
         self.discordClient.login(email, password)
 
         @self.discordClient.event
+        @asyncio.coroutine
         def on_message(message):
             if message.channel.id not in self.textlogs:
                 self.textlogs[message.channel.id] = []
@@ -126,6 +128,7 @@ class DTClient(object):
             self._invoke_event('on_message', message)
 
         @self.discordClient.event
+        @asyncio.coroutine
         def on_ready():
             self.user = self.discordClient.user
             self.on_ready()

@@ -39,10 +39,12 @@ def main():
     # only on_message and
     # on_ready have implementations in dtclient
     @dtcontroller.dtclient.event
+    @asyncio.coroutine
     def on_message(message):
         pass
 
     @dtcontroller.dtclient.event
+    @asyncio.coroutine
     def on_ready():
         # printing message on output box
         dtcontroller.print_output('Hello world!')
@@ -51,6 +53,7 @@ def main():
     # but do not use on on_message and on_ready
     # as they will just get overwritten
     @dtcontroller.dtclient.discordClient.event
+    @asyncio.coroutine
     def on_disconnect():
         pass
 

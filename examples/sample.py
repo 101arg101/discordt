@@ -1,3 +1,4 @@
+import asyncio
 import discordt
 
 dtcontroller = discordt.DTController()
@@ -24,6 +25,7 @@ def on_ready():
 # but do not use on on_message and on_ready
 # as they will just get overwritten
 @dtcontroller.dtclient.discordClient.event
+@asyncio.coroutine
 def on_disconnect():
     pass
 
